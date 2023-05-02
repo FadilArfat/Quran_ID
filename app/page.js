@@ -15,24 +15,27 @@ export default function Home() {
     const hasilCari = quran.filter((item) => {
       return item.namaLatin.toLowerCase().includes(keyword.toLowerCase());
     });
+    if (hasilCari.length > 0) {
+      setCariState(hasilCari);
+    } else {
+      setCariState(null);
+    }
     setNyari(true);
-    setCariState(hasilCari);
+  };
 
-    console.log(hasilCari[0].namaLatin);
+  const ambil = async () => {
+    setIsLoading(true);
+    const hihi = await fetch("/api/quran/")
+      .then((res) => res.json())
+      .then((data) => {
+        const haha = data.hasil.data;
+        return haha;
+      });
+    setQuran(hihi);
+    setIsLoading(false);
   };
 
   useEffect(() => {
-    const ambil = async () => {
-      setIsLoading(true);
-      const hihi = await fetch("/api/quran/")
-        .then((res) => res.json())
-        .then((data) => {
-          const haha = data.hasil.data;
-          return haha;
-        });
-      setQuran(hihi);
-      setIsLoading(false);
-    };
     ambil();
   }, []);
 
@@ -42,10 +45,10 @@ export default function Home() {
         <div className="w-full bg-white text-center p-10 text-3xl mb-3 rounded">
           <p>بِسْــــــــــــــــــمِ اللهِ الرَّحْمَنِ الرَّحِيْمِ</p>
         </div>
-        <div className="bg-white border-2 p-2 rounded-lg flex justify-center">
+        <div className="bg-white border-2 p-2 rounded-lg flex flex-col md:flex-row justify-center md:justify-between items-center">
           <input
             onChange={(e) => setKey(e.target.value)}
-            className="w-full py-2 px-3 text-gray-800 rounded-lg focus:outline-none"
+            className="w-full md:w-3/4 py-2 px-3 text-gray-800 rounded-lg focus:outline-none mb-3 md:mb-0"
             type="text"
             placeholder="input surah name"
           />
@@ -70,12 +73,19 @@ export default function Home() {
           </button>
         </div>
       </div>
-      <div className="mt-3 grid grid-cols-3 gap-2">
+      <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
         {isLoading && <CardSkeleton cards={114} />}
 
         {nyari ? (
-          <Link href={`/detail/${cariState.nomor}`} props={cariState.nomor}>
-            <div className="bg-white w-full p-4 rounded">
+          <Link
+            href={`/detail/${cariState.nomor}`}
+            props={cariState.nomor}
+            key={cariState.nomor}
+          >
+            <div
+              className="bg-white w-full p-4 rounded"
+              key={cariState[0].nomor}
+            >
               <p>{`${cariState[0].nomor}. ${cariState[0].namaLatin}`}</p>
               <div className="text-right">
                 <p className="font-extrabold">{cariState[0].nama}</p>
@@ -85,8 +95,12 @@ export default function Home() {
           </Link>
         ) : (
           quran?.map((qur) => (
-            <Link href={`/detail/${qur.nomor}`} props={qur.nomor}>
-              <div className="bg-white w-full p-4 rounded">
+            <Link
+              href={`/detail/${qur.nomor}`}
+              props={qur.nomor}
+              key={qur.nomor}
+            >
+              <div className="bg-white w-full p-4 rounded" key={qur.nomor}>
                 <p>{`${qur.nomor}. ${qur.namaLatin}`}</p>
                 <div className="text-right">
                   <p className="font-extrabold text-3xl">{qur.nama}</p>
