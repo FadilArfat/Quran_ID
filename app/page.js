@@ -41,8 +41,11 @@ export default function Home() {
 
   return (
     <main className="container mx-auto lg:max-w-6xl py-5 px-4 mt-12 mb-20">
-      <div className="relative top-0 w-full pt-10 px-4 bg-gray-800">
-        <div className="w-full bg-white text-center p-10 text-3xl mb-3 rounded">
+      <div
+        className="relative top-0 w-full pt-10 px-4"
+        style={{ backgroundColor: "#6A9D41" }}
+      >
+        <div className="w-full bg-gray-100 text-center p-10 text-3xl mb-3 rounded">
           <p>بِسْــــــــــــــــــمِ اللهِ الرَّحْمَنِ الرَّحِيْمِ</p>
         </div>
         <div className="bg-white border-2 p-2 rounded-lg flex flex-col md:flex-row justify-center md:justify-between items-center">
@@ -83,7 +86,7 @@ export default function Home() {
             key={cariState.nomor}
           >
             <div
-              className="bg-white w-full p-4 rounded"
+              className="bg-gray-100 w-full p-4 rounded"
               key={cariState[0].nomor}
             >
               <p>{`${cariState[0].nomor}. ${cariState[0].namaLatin}`}</p>
@@ -100,7 +103,7 @@ export default function Home() {
               props={qur.nomor}
               key={qur.nomor}
             >
-              <div className="bg-white w-full p-4 rounded" key={qur.nomor}>
+              <div className="bg-gray-100 w-full p-4 rounded" key={qur.nomor}>
                 <p>{`${qur.nomor}. ${qur.namaLatin}`}</p>
                 <div className="text-right">
                   <p className="font-extrabold text-3xl">{qur.nama}</p>

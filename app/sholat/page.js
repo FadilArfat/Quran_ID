@@ -1,4 +1,5 @@
 "use client";
+import Clock from "@/components/Clock";
 import TableSkeleton from "@/components/TableSkeleton";
 import React, { useEffect, useState } from "react";
 
@@ -70,7 +71,7 @@ export default function Sholat() {
       <div className="relative">
         <button
           type="button"
-          className="inline-flex justify-center items-center space-x-2 bg-gray-500 hover:bg-gray-600 px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+          className="inline-flex justify-center items-center space-x-2 bg-gray-50 hover:bg-gray-100 px-4 py-2 text-sm font-medium text-black border border-transparent rounded-md hover:text-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
           id="dropdown-menu-button"
           aria-haspopup="true"
           aria-expanded={isOpen}
@@ -136,85 +137,80 @@ export default function Sholat() {
             </div>
           </div>
         )}
+        <div className="flex justify-end items-end mr-4">
+          <Clock />
+        </div>
       </div>
-      <div className="w-full bg-gray-900 text-center p-5 my-3 rounded-lg text-white">
+
+      <div className="w-full bg-gray-100 text-center p-5 my-3 rounded-lg text-black">
         <p className="text-3xl">{`Jadwal Sholat untuk ${kota}`}</p>
-        <p className="text-xl">{`${monthNames[currentMonth]} ${currentYear}`}</p>
+        <p className="text-xl">{`${currentDate.getDate()} ${
+          monthNames[currentMonth]
+        } ${currentYear}`}</p>
       </div>
       {/* tabel */}
       {isLoading ? (
         <TableSkeleton jumlah={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]} />
       ) : (
-        <div class=" overflow-x-auto shadow-md sm:rounded-lg mt-5">
-          <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <div className=" overflow-x-auto shadow-md sm:rounded-lg mt-5">
+          <table className="w-full text-sm text-left text-black dark:text-black">
+            <thead className="text-xs text-gray-900 uppercase bg-gray-100 ">
               <tr>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   Tanggal
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   Imsyak
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   Shubuh
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   Terbit
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   Dhuha
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   Dzuhur
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   Ashr
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   Maghrib
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" className="px-6 py-3">
                   Isya
                 </th>
               </tr>
             </thead>
             <tbody>
-              {dataKota?.map(
-                ({
-                  tanggal,
-                  imsyak,
-                  shubuh,
-                  terbit,
-                  dhuha,
-                  dzuhur,
-                  ashr,
-                  magrib,
-                  isya,
-                  index,
-                }) => {
-                  return (
-                    <tr
-                      class="bg-white border-b dark:bg-gray-900 dark:border-gray-700"
-                      key={index}
+              {dataKota?.map((dataJadwal, index) => {
+                return (
+                  <tr
+                    className={`border-b bg-gray-${
+                      index % 2 === 0 ? "200" : "50"
+                    } dark:border-gray-700`}
+                    key={index}
+                  >
+                    <th
+                      scope="row"
+                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
                     >
-                      <th
-                        scope="row"
-                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                      >
-                        {tanggal}
-                      </th>
-                      <td class="px-6 py-4">{imsyak}</td>
-                      <td class="px-6 py-4">{shubuh}</td>
-                      <td class="px-6 py-4">{terbit}</td>
-                      <td class="px-6 py-4">{dhuha}</td>
-                      <td class="px-6 py-4">{dzuhur}</td>
-                      <td class="px-6 py-4">{ashr}</td>
-                      <td class="px-6 py-4">{magrib}</td>
-                      <td class="px-6 py-4">{isya}</td>
-                    </tr>
-                  );
-                }
-              )}
+                      {dataJadwal.tanggal}
+                    </th>
+                    <td className="px-6 py-4">{dataJadwal.imsyak}</td>
+                    <td className="px-6 py-4">{dataJadwal.shubuh}</td>
+                    <td className="px-6 py-4">{dataJadwal.terbit}</td>
+                    <td className="px-6 py-4">{dataJadwal.dhuha}</td>
+                    <td className="px-6 py-4">{dataJadwal.dzuhur}</td>
+                    <td className="px-6 py-4">{dataJadwal.ashr}</td>
+                    <td className="px-6 py-4">{dataJadwal.magrib}</td>
+                    <td className="px-6 py-4">{dataJadwal.isya}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

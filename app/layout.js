@@ -4,13 +4,13 @@ import Footer from "@/components/Footer";
 
 export const metadata = {
   title: "Quran+",
-  description: "Aplikasi Al-Quran web",
+  description: "Aplikasi Al-Quran berbasis web",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="bg-gray-800">
+      <body style={{ backgroundColor: "#6A9D41" }}>
         <NavBar />
         {children}
         <Footer />
