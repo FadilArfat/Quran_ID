@@ -1,5 +1,5 @@
 import React from "react";
-import Quran from "../public/Quran+.png";
+import Quran from "../public/quran+.png";
 import Link from "next/link";
 
 export default function navbar() {
