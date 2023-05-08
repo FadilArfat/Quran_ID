@@ -10,7 +10,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body style={{ backgroundColor: "#6A9D41" }}>
+      <body className="bg-gradient-to-br from-green-500 via-green-800 to-emerald-900">
         <NavBar />
         {children}
         <Footer />

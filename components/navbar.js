@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function navbar() {
   return (
     <div>
-      <nav className="bg-gray-100 fixed w-full z-20 top-0 left-0 border-b border-gray-200 ">
+      <nav className="bg-gradient-to-r from-green-800 via-green-600 to-emerald-900 fixed w-full z-20 top-0 left-0 border-b-2 border-yellow-400">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
           <Link href={"/"} className="flex items-center">
             <img
@@ -13,15 +13,14 @@ export default function navbar() {
               className="object-cover w-12 mr-1"
               alt="Flowbite Logo"
             />
-            <span className="self-center text-black text-2xl font-semibold whitespace-nowrap">
+            <span className="self-center text-yellow-400 text-2xl font-semibold whitespace-nowrap">
               Quran+
             </span>
           </Link>
           <div className="flex md:order-2">
             <button
               type="button"
-              className="text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0"
-              style={{ backgroundColor: "#6A9D41" }}
+              className="text-white bg-emerald-800 border border-gray-50 hover:bg-emerald-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-2xl text-sm px-4 py-2 text-center mr-3 md:mr-0"
             >
               Get started
             </button>
@@ -52,11 +51,11 @@ export default function navbar() {
             className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
             id="navbar-sticky"
           >
-            <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0 dark:border-gray-700 bg-gray-100">
+            <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium rounded-lg  md:flex-row md:space-x-8 md:mt-0">
               <li>
                 <Link
                   href={"/"}
-                  className="block py-2 pl-3 pr-4 text-white  rounded md:bg-transparent md:text-green-600 md:p-0 md:dark:text-green-600"
+                  className="block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:p-0 "
                   aria-current="page"
                 >
                   Home
@@ -65,7 +64,7 @@ export default function navbar() {
               <li>
                 <Link
                   href={"/sholat"}
-                  className="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-green-600 md:p-0 md:dark:hover:text-green-600 text-gray-700 dark:text-gray-700 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                  className="block py-2 pl-3 pr-4 rounded text-white hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-200 md:p-0 md:dark:hover:text-gray-200"
                 >
                   Jadwal Shalat
                 </Link>
@@ -73,7 +72,7 @@ export default function navbar() {
               <li>
                 <a
                   href="https://github.com/FadilArfat"
-                  className="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-green-600 md:p-0 md:dark:hover:text-green-600 text-gray-700 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                  className="block py-2 pl-3 pr-4 rounded text-white hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-200 md:p-0 md:dark:hover:text-gray-200 "
                 >
                   Github
                 </a>

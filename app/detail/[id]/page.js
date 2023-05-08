@@ -95,7 +95,7 @@ export default function Detail({ params }) {
 
         <div className="flex justify-end items-end">
           <Link href={`/detail/${detilQuran?.suratSelanjutnya?.nomor}`}>
-            <p className="p-4 bg-slate-900 text-white">
+            <p className="p-2 border outline-1 rounded-2xl bg-emerald-900 hover:bg-emerald-800 text-white">
               {detilQuran?.suratSelanjutnya?.namaLatin}
             </p>
           </Link>
