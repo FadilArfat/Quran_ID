@@ -1,5 +1,4 @@
 import React from "react";
-import Quran from "../public/quran+.png";
 import Link from "next/link";
 
 export default function navbar() {
@@ -9,9 +8,9 @@ export default function navbar() {
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
           <Link href={"/"} className="flex items-center">
             <img
-              src={Quran}
+              src="https://firebasestorage.googleapis.com/v0/b/portfolio-web-6bc3e.appspot.com/o/TV%20-%201%20(2).png?alt=media&token=33625b77-def2-495b-8bcf-9bf3167b0730"
               className="object-cover w-12 mr-1"
-              alt="Flowbite Logo"
+              alt="Logo"
             />
             <span className="self-center text-yellow-400 text-2xl font-semibold whitespace-nowrap">
               Quran+
