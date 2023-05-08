@@ -8,7 +8,7 @@ export default function navbar() {
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
           <Link href={"/"} className="flex items-center">
             <img
-              src="https://firebasestorage.googleapis.com/v0/b/portfolio-web-6bc3e.appspot.com/o/TV%20-%201%20(2).png?alt=media&token=33625b77-def2-495b-8bcf-9bf3167b0730"
+              src="https://firebasestorage.googleapis.com/v0/b/portfolio-web-6bc3e.appspot.com/o/Quran%2B.png?alt=media&token=8656ecba-8124-41f4-a63b-7741100fc7c1"
               className="object-cover w-12 mr-1"
               alt="Logo"
             />
