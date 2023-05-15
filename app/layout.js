@@ -10,9 +10,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body style={{ backgroundColor: "#E9E6D7" }}>
+      <body
+        className="flex flex-col min-h-screen"
+        style={{ backgroundColor: "#E9E6D7" }}
+      >
         <div
-          className="w-full h-full bg-no-repeat bg-cover relative"
+          className="w-full h-full bg-no-repeat bg-cover relative  flex-grow "
           style={{
             backgroundImage: `url(https://firebasestorage.googleapis.com/v0/b/portfolio-web-6bc3e.appspot.com/o/masjid.svg?alt=media&token=45fbcee4-caf2-4c76-9247-7164683b938b)`,
           }}
