@@ -37,21 +37,21 @@ export default function Detail({ params }) {
   return (
     <div className="container mx-auto lg:max-w-6xl py-5 px-4 mt-16 mb-20">
       <div className="container mx-auto">
-        <div className="w-full bg-white text-center p-10 text-3xl mb-3 rounded">
+        <div className="w-full bg-white text-center p-10 text-3xl mb-3 rounded font-bold">
           <p>بِسْــــــــــــــــــمِ اللهِ الرَّحْمَنِ الرَّحِيْمِ</p>
         </div>
         <div className="mt-3">
           {isLoading && <CardDetailSkeleton cards={10} />}
           {detilQuran?.ayat?.map((d) => (
             <div className="bg-white w-full mb-2" key={d.nomorAyat}>
-              <div className="p-4 bg-slate-50">
+              <div className="p-4 bg-white">
                 <p>1:{d.nomorAyat}</p>
                 <div className="text-right">
                   <p className="font-extrabold text-2xl py-4">{d.teksArab}</p>
                 </div>
                 <p className="mt-3">{d.teksLatin}</p>
                 <hr className="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700" />
-                <p>{d.teksIndonesia}</p>
+                <p className="text-gray-500">{d.teksIndonesia}</p>
                 <button
                   className="mt-4 p-0 ml-0"
                   onClick={() => handleButtonClick(d.audio["01"])}

@@ -2,7 +2,10 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <footer className=" rounded-lg shadow my-4 mb-0 ">
+    <footer
+      className="  shadow my-4 mb-0"
+      style={{ backgroundColor: "#1C3F39" }}
+    >
       <div className="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
         <span className="text-white">
           © 2023{" "}

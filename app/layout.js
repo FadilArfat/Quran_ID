@@ -1,6 +1,7 @@
 import "./globals.css";
 import NavBar from "../components/navbar";
 import Footer from "@/components/Footer";
+import Masjid from "../public/masjid.svg";
 
 export const metadata = {
   title: "Quran+",
@@ -10,10 +11,17 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="bg-gradient-to-br from-green-500 via-green-800 to-emerald-900">
-        <NavBar />
-        {children}
-        <Footer />
+      <body style={{ backgroundColor: "#E9E6D7" }}>
+        <div
+          className="w-full h-full bg-no-repeat bg-cover relative"
+          style={{
+            backgroundImage: `url(${Masjid})`,
+          }}
+        >
+          <NavBar />
+          {children}
+          <Footer />
+        </div>
       </body>
     </html>
   );

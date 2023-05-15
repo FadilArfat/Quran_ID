@@ -144,9 +144,7 @@ export default function Sholat() {
 
       <div className="w-full bg-gray-100 text-center p-5 my-3 rounded-lg text-black">
         <p className="text-3xl">{`Jadwal Sholat untuk ${kota}`}</p>
-        <p className="text-xl">{`${currentDate.getDate()} ${
-          monthNames[currentMonth]
-        } ${currentYear}`}</p>
+        <p className="text-xl">{` ${monthNames[currentMonth]} ${currentYear}`}</p>
       </div>
       {/* tabel */}
       {isLoading ? (

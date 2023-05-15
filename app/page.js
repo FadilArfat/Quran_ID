@@ -1,119 +1,43 @@
-"use client";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import "./loader.css";
-import CardSkeleton from "@/components/CardSkeleton";
+import React from "react";
 
 export default function Home() {
-  const [quran, setQuran] = useState([]);
-  const [key, setKey] = useState("");
-  const [cariState, setCariState] = useState(null);
-  const [nyari, setNyari] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const cari = async (keyword) => {
-    const hasilCari = quran.filter((item) => {
-      return item.namaLatin.toLowerCase().includes(keyword.toLowerCase());
-    });
-    if (hasilCari.length > 0) {
-      setCariState(hasilCari);
-    } else {
-      setCariState(null);
-    }
-    setNyari(true);
-  };
-
-  const ambil = async () => {
-    setIsLoading(true);
-    const hihi = await fetch("/api/quran/")
-      .then((res) => res.json())
-      .then((data) => {
-        const haha = data.hasil.data;
-        return haha;
-      });
-    setQuran(hihi);
-    setIsLoading(false);
-  };
-
-  useEffect(() => {
-    ambil();
-  }, []);
-
   return (
-    <main className="container mx-auto lg:max-w-6xl py-5 px-4 mt-12 mb-20">
-      <div className="relative top-0 w-full pt-10 px-4">
-        <div className="w-full backdrop-blur bg-gray-50 text-center p-10 text-3xl mb-3 rounded">
-          <p>بِسْــــــــــــــــــمِ اللهِ الرَّحْمَنِ الرَّحِيْمِ</p>
+    <div className="container mx-auto lg:max-w-6xl py-5 px-4 mt-12 mb-20">
+      <div className="text-center mt-16">
+        <h1 className="font-extrabold text-3xl" style={{ color: "#1C3F39" }}>
+          Dalam Gemerlapnya Kehidupan,
+          <br /> Temukan Kedamaianmu Melalui Al-Quran, <br />
+          Petunjuk Terang Dalam Kegelapan Dunia.
+        </h1>
+        <div style={{ color: "#556561" }}>
+          <h2 className="mt-10 text-lg">
+            Website ini mengajakmu untuk merenung, menghela nafas dalam, dan
+            menemukan kedekatan <br />
+            dengan Sang Pencipta melalui ayat-ayat-Nya yang menggetarkan hati.
+          </h2>
+          <h2 className="mt-4 text-xl">
+            وَاِذَا قُرِئَ الْقُرْاٰنُ فَاسْتَمِعُوْا لَهٗ وَاَنْصِتُوْا
+            لَعَلَّكُمْ تُرْحَمُوْنَ
+          </h2>
+          <h2 className="mt-4 text-lg">
+            “Dan apabila dibacakan Al-Quran, maka dengarkanlah baik-baik, <br />
+            dan perhatikanlah dengan tenang agar kamu mendapat rahmat”
+          </h2>
+          <h3 className="mt-4 text-xl">(QS. Al-A‘raf [7]: 204)</h3>
         </div>
-        <div className="bg-gray-50 border-2 p-2 rounded-lg flex flex-col md:flex-row justify-center md:justify-between items-center">
-          <input
-            onChange={(e) => setKey(e.target.value)}
-            className="bg-gray-50 w-full md:w-3/4 py-2 px-3 text-gray-800 rounded-lg focus:outline-none mb-3 md:mb-0"
-            type="text"
-            placeholder="input surah name"
-          />
+      </div>
+      <div className="flex justify-center items-center mt-4 gap-4">
+        <Link href={"/quran"}>
           <button
-            onClick={() => cari(key)}
-            className="p-2 rounded-md text-gray-500 bottom-1"
+            style={{ backgroundColor: "#F2AC0D", color: "#1C3F39" }}
+            type="button"
+            className=" focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-2xl text-sm px-4 py-2 text-center mr-3 md:mr-0"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="w-6 h-6 text-emerald-900"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-              />
-            </svg>
+            Mulai Membaca
           </button>
-        </div>
+        </Link>
       </div>
-      <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-        {isLoading && <CardSkeleton cards={114} />}
-
-        {nyari ? (
-          <Link
-            href={`/detail/${cariState.nomor}`}
-            props={cariState.nomor}
-            key={cariState.nomor}
-          >
-            <div
-              className="bg-gray-100 w-full p-4 rounded"
-              key={cariState[0].nomor}
-            >
-              <p>{`${cariState[0].nomor}. ${cariState[0].namaLatin}`}</p>
-              <div className="text-right">
-                <p className="font-extrabold">{cariState[0].nama}</p>
-                <p>{`${cariState[0].tempatTurun}.${cariState[0].arti}`}</p>
-              </div>
-            </div>
-          </Link>
-        ) : (
-          quran?.map((qur) => (
-            <Link
-              href={`/detail/${qur.nomor}`}
-              props={qur.nomor}
-              key={qur.nomor}
-            >
-              <div
-                className="bg-gray-50 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-gray-100 duration-300 w-full p-4 rounded"
-                key={qur.nomor}
-              >
-                <p className="font-bold text-emerald-900">{`${qur.nomor}. ${qur.namaLatin}`}</p>
-                <div className="text-right">
-                  <p className="font-extrabold text-3xl">{qur.nama}</p>
-                  <p className="text-gray-400">{`${qur.tempatTurun}.${qur.arti}`}</p>
-                </div>
-              </div>
-            </Link>
-          ))
-        )}
-      </div>
-    </main>
+    </div>
   );
 }

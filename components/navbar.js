@@ -4,7 +4,10 @@ import Link from "next/link";
 export default function navbar() {
   return (
     <div>
-      <nav className="bg-gradient-to-r from-green-800 via-green-600 to-emerald-900 fixed w-full z-20 top-0 left-0 border-b-2 border-yellow-400">
+      <nav
+        style={{ backgroundColor: "#E9E6D7" }}
+        className="fixed w-full z-20 top-0 left-0 "
+      >
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
           <Link href={"/"} className="flex items-center">
             <img
@@ -12,17 +15,23 @@ export default function navbar() {
               className="object-cover w-12 mr-1"
               alt="Logo"
             />
-            <span className="self-center text-yellow-400 text-2xl font-semibold whitespace-nowrap">
+            <span
+              style={{ color: "#1C3F39" }}
+              className="self-center text-2xl font-semibold whitespace-nowrap"
+            >
               Quran+
             </span>
           </Link>
           <div className="flex md:order-2">
-            <button
-              type="button"
-              className="text-white bg-emerald-800 border border-gray-50 hover:bg-emerald-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-2xl text-sm px-4 py-2 text-center mr-3 md:mr-0"
-            >
-              Get started
-            </button>
+            <Link href={"/quran"}>
+              <button
+                style={{ backgroundColor: "#1C3F39" }}
+                type="button"
+                className="text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-2xl text-sm px-4 py-2 text-center mr-3 md:mr-0"
+              >
+                Mulai Baca
+              </button>
+            </Link>
             <button
               data-collapse-toggle="navbar-sticky"
               type="button"
@@ -50,11 +59,14 @@ export default function navbar() {
             className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
             id="navbar-sticky"
           >
-            <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium rounded-lg  md:flex-row md:space-x-8 md:mt-0">
+            <ul
+              style={{ color: "#556561" }}
+              className="flex flex-col p-4 md:p-0 mt-4 font-medium rounded-lg  md:flex-row md:space-x-8 md:mt-0"
+            >
               <li>
                 <Link
                   href={"/"}
-                  className="block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:p-0 "
+                  className="block py-2 pl-3 pr-4  rounded md:bg-transparent md:p-0 "
                   aria-current="page"
                 >
                   Home
@@ -63,7 +75,7 @@ export default function navbar() {
               <li>
                 <Link
                   href={"/sholat"}
-                  className="block py-2 pl-3 pr-4 rounded text-white hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-200 md:p-0 md:dark:hover:text-gray-200"
+                  className="block py-2 pl-3 pr-4 rounded md:hover:bg-transparent md:p-0 "
                 >
                   Jadwal Shalat
                 </Link>
@@ -71,7 +83,7 @@ export default function navbar() {
               <li>
                 <a
                   href="https://github.com/FadilArfat"
-                  className="block py-2 pl-3 pr-4 rounded text-white hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-200 md:p-0 md:dark:hover:text-gray-200 "
+                  className="block py-2 pl-3 pr-4 rounded md:hover:bg-transparent  md:p-0  "
                 >
                   Github
                 </a>
@@ -79,6 +91,10 @@ export default function navbar() {
             </ul>
           </div>
         </div>
+        <hr
+          style={{ width: "92%", backgroundColor: "#556561" }}
+          className="h-0.5 mx-auto 0 border-0 mt-2"
+        ></hr>
       </nav>
     </div>
   );
