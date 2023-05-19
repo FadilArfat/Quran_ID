@@ -35,7 +35,7 @@ export default function Detail({ params }) {
   }, []);
 
   return (
-    <div className="container mx-auto lg:max-w-6xl py-5 px-4 mt-16 mb-20">
+    <div className="container mx-auto lg:max-w-6xl py-5 px-4 mt-16 mb-20 min-h-screen">
       <div className="container mx-auto">
         <div className="w-full bg-white text-center p-10 text-3xl mb-3 rounded font-bold">
           <p>بِسْــــــــــــــــــمِ اللهِ الرَّحْمَنِ الرَّحِيْمِ</p>
@@ -96,7 +96,7 @@ export default function Detail({ params }) {
         <div className="flex justify-end items-end">
           <Link href={`/detail/${detilQuran?.suratSelanjutnya?.nomor}`}>
             <p className="p-2 border outline-1 rounded-2xl bg-emerald-900 hover:bg-emerald-800 text-white">
-              {detilQuran?.suratSelanjutnya?.namaLatin}
+              {`Next : ${detilQuran?.suratSelanjutnya?.namaLatin}`}
             </p>
           </Link>
         </div>

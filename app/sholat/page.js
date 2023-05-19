@@ -2,6 +2,8 @@
 import Clock from "@/components/Clock";
 import TableSkeleton from "@/components/TableSkeleton";
 import React, { useEffect, useState } from "react";
+import { jsPDF } from "jspdf";
+import html2canvas from "html2canvas";
 
 export default function Sholat() {
   const [listKota, setListKota] = useState([]);
@@ -23,6 +25,15 @@ export default function Sholat() {
     "November",
     "December",
   ];
+  const generatePDF = () => {
+    const doc = new jsPDF();
+    const table = document.getElementById("tbl-jadwal");
+    html2canvas(table).then((canvas) => {
+      const imgData = canvas.toDataURL("image/png");
+      doc.addImage(imgData, "PNG", 10, 10, 190, 0);
+      doc.save("jadwal_shalat.pdf");
+    });
+  };
 
   const currentDate = new Date();
   const currentMonth = currentDate.getMonth();
@@ -55,6 +66,11 @@ export default function Sholat() {
       });
     setListKota(hihi);
     setIsLoading(false);
+  };
+
+  const handleClickKota = (itemProp) => {
+    setKota(itemProp);
+    setIsOpen(false);
   };
 
   useEffect(() => {
@@ -123,8 +139,8 @@ export default function Sholat() {
               {listKota?.map((item, index) => {
                 return (
                   <a
-                    onClick={() => setKota(item)}
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                    onClick={() => handleClickKota(item)}
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 cursor-pointer"
                     role="menuitem"
                     tabIndex="-1"
                     id={`dropdown-menu-item-${index}`}
@@ -142,77 +158,85 @@ export default function Sholat() {
         </div>
       </div>
 
-      <div className="w-full bg-gray-100 text-center p-5 my-3 rounded-lg text-black">
-        <p className="text-3xl">{`Jadwal Sholat untuk ${kota}`}</p>
-        <p className="text-xl">{` ${monthNames[currentMonth]} ${currentYear}`}</p>
-      </div>
-      {/* tabel */}
-      {isLoading ? (
-        <TableSkeleton jumlah={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]} />
-      ) : (
-        <div className=" overflow-x-auto shadow-md sm:rounded-lg mt-5">
-          <table className="w-full text-sm text-left text-black dark:text-black">
-            <thead className="text-xs text-gray-900 uppercase bg-gray-100 ">
-              <tr>
-                <th scope="col" className="px-6 py-3">
-                  Tanggal
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Imsyak
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Shubuh
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Terbit
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Dhuha
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Dzuhur
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Ashr
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Maghrib
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Isya
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {dataKota?.map((dataJadwal, index) => {
-                return (
-                  <tr
-                    className={`border-b bg-gray-${
-                      index % 2 === 0 ? "200" : "50"
-                    } dark:border-gray-700`}
-                    key={index}
-                  >
-                    <th
-                      scope="row"
-                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
-                    >
-                      {dataJadwal.tanggal}
-                    </th>
-                    <td className="px-6 py-4">{dataJadwal.imsyak}</td>
-                    <td className="px-6 py-4">{dataJadwal.shubuh}</td>
-                    <td className="px-6 py-4">{dataJadwal.terbit}</td>
-                    <td className="px-6 py-4">{dataJadwal.dhuha}</td>
-                    <td className="px-6 py-4">{dataJadwal.dzuhur}</td>
-                    <td className="px-6 py-4">{dataJadwal.ashr}</td>
-                    <td className="px-6 py-4">{dataJadwal.magrib}</td>
-                    <td className="px-6 py-4">{dataJadwal.isya}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+      <div id="tbl-jadwal">
+        <div className="w-full  text-center p-5 rounded-lg bg-emerald-900 text-white">
+          <p className="text-3xl">{`Jadwal Sholat untuk ${kota}`}</p>
+          <p className="text-xl">{` ${monthNames[currentMonth]} ${currentYear}`}</p>
         </div>
-      )}
+        {/* tabel */}
+        {isLoading ? (
+          <TableSkeleton jumlah={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]} />
+        ) : (
+          <div className=" overflow-x-auto shadow-md sm:rounded-lg mt-5">
+            <table className="w-full text-sm text-left text-black dark:text-black">
+              <thead className="text-xs text-gray-900 uppercase bg-gray-100 ">
+                <tr className="bg-emerald-900 hover:bg-emerald-800 text-white">
+                  <th scope="col" className="px-6 py-3">
+                    Tanggal
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Imsyak
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Shubuh
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Terbit
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Dhuha
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Dzuhur
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Ashr
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Maghrib
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Isya
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {dataKota?.map((dataJadwal, index) => {
+                  return (
+                    <tr
+                      className={`border-b bg-gray-${
+                        index % 2 === 0 ? "200" : "50"
+                      } dark:border-gray-700`}
+                      key={index}
+                    >
+                      <th
+                        scope="row"
+                        className="px-6 py-3 font-medium text-gray-900 whitespace-nowrap "
+                      >
+                        {dataJadwal.tanggal}
+                      </th>
+                      <td className="px-6 py-3">{dataJadwal.imsyak}</td>
+                      <td className="px-6 py-3">{dataJadwal.shubuh}</td>
+                      <td className="px-6 py-3">{dataJadwal.terbit}</td>
+                      <td className="px-6 py-3">{dataJadwal.dhuha}</td>
+                      <td className="px-6 py-3">{dataJadwal.dzuhur}</td>
+                      <td className="px-6 py-3">{dataJadwal.ashr}</td>
+                      <td className="px-6 py-3">{dataJadwal.magrib}</td>
+                      <td className="px-6 py-3">{dataJadwal.isya}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+      <button
+        className="p-2 border outline-1 rounded-2xl bg-emerald-900 hover:bg-emerald-800 text-white mt-4"
+        onClick={generatePDF}
+      >
+        Unduh Jadwal
+      </button>
     </div>
   );
 }

@@ -15,7 +15,7 @@ export default function Quran() {
     const hasilCari = quran.filter((item) => {
       return item.namaLatin.toLowerCase().includes(keyword.toLowerCase());
     });
-    if (hasilCari.length > 0) {
+    if (hasilCari != null) {
       setCariState(hasilCari);
     } else {
       setCariState(null);
@@ -40,7 +40,7 @@ export default function Quran() {
   }, []);
 
   return (
-    <main className="container mx-auto lg:max-w-6xl py-5 px-4 mt-12 mb-20">
+    <main className="container mx-auto lg:max-w-6xl py-5 px-4 mt-12 mb-20 min-h-screen">
       <div className="relative top-0 w-full pt-10 px-4">
         <div className="w-full backdrop-blur bg-gray-50 text-center p-10 text-3xl mb-3 rounded font-bold">
           <p>بِسْــــــــــــــــــمِ اللهِ الرَّحْمَنِ الرَّحِيْمِ</p>
@@ -51,6 +51,11 @@ export default function Quran() {
             className="bg-gray-50 w-full md:w-3/4 py-2 px-3 text-gray-800 rounded-lg focus:outline-none mb-3 md:mb-0"
             type="text"
             placeholder="input surah name"
+            onKeyDown={(event) => {
+              if (event.key === "Enter") {
+                cari(key);
+              }
+            }}
           />
           <button
             onClick={() => cari(key)}
@@ -77,25 +82,31 @@ export default function Quran() {
         {isLoading && <CardSkeleton cards={114} />}
 
         {nyari ? (
-          <Link
-            href={`/detail/${cariState.nomor}`}
-            props={cariState.nomor}
-            key={cariState.nomor}
-          >
-            <div
-              className="bg-gray-100 w-full p-4 rounded"
-              key={cariState[0].nomor}
-            >
-              <p
-                className="font-bold"
-                style={{ color: "#1C3F39" }}
-              >{`${cariState[0].nomor}. ${cariState[0].namaLatin}`}</p>
-              <div className="text-right">
-                <p className="font-extrabold">{cariState[0].nama}</p>
-                <p>{`${cariState[0].tempatTurun}.${cariState[0].arti}`}</p>
-              </div>
-            </div>
-          </Link>
+          cariState?.length > 0 ? (
+            cariState.map((qurCari) => (
+              <Link
+                href={`/detail/${qurCari.nomor}`}
+                props={qurCari.nomor}
+                key={qurCari.nomor}
+              >
+                <div
+                  className="bg-gray-50 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-gray-100 duration-300 w-full p-4 rounded"
+                  key={qurCari.nomor}
+                >
+                  <p
+                    className="font-bold"
+                    style={{ color: "#1C3F39" }}
+                  >{`${qurCari.nomor}. ${qurCari.namaLatin}`}</p>
+                  <div className="text-right">
+                    <p className="font-extrabold text-3xl">{qurCari.nama}</p>
+                    <p className="text-gray-400">{`${qurCari.tempatTurun}.${qurCari.arti}`}</p>
+                  </div>
+                </div>
+              </Link>
+            ))
+          ) : (
+            <p className="font-bold pl-5">Surah tidak ditemukan.</p>
+          )
         ) : (
           quran?.map((qur) => (
             <Link
