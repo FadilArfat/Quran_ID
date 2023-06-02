@@ -1,5 +1,5 @@
 "use client";
-import CardDetailSkeleton from "@/components/CardDetailSkeleton";
+import CardDetailSkeleton from "../../../components/CardSkeleton";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
@@ -33,6 +33,8 @@ export default function Detail({ params }) {
   useEffect(() => {
     ambil();
   }, []);
+
+  console.log(detilQuran);
 
   return (
     <div className="container mx-auto lg:max-w-6xl py-5 px-4 mt-16 mb-20 min-h-screen">

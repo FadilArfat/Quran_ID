@@ -1,6 +1,6 @@
 "use client";
-import Clock from "@/components/Clock";
-import TableSkeleton from "@/components/TableSkeleton";
+import Clock from "../../components/Clock";
+import TableSkeleton from "../../components/TableSkeleton";
 import React, { useEffect, useState } from "react";
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";

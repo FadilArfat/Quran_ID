@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-export default function Home() {
+export default async function Home() {
   return (
     <div className="container mx-auto lg:max-w-6xl py-5 px-4 mt-12 mb-20">
       <div className="text-center mt-16">
@@ -10,6 +10,7 @@ export default function Home() {
           <br /> Temukan Kedamaianmu Melalui Al-Quran, <br />
           Petunjuk Terang Dalam Kegelapan Dunia.
         </h1>
+
         <div style={{ color: "#556561" }}>
           <h2 className="mt-10 text-lg">
             Website ini mengajakmu untuk merenung, menghela nafas dalam, dan

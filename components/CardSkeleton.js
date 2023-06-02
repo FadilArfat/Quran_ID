@@ -5,7 +5,7 @@ const CardSkeleton = ({ cards }) => {
     .fill(0)
     .map((item, i) => (
       <div
-        className="flex w-full bg-white py-16 border border-slate-900 animate-pulse rounded"
+        className="flex w-full bg-white py-16 animate-pulse rounded"
         key={i}
       ></div>
     ));
