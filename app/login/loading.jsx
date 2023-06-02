@@ -1,9 +1,3 @@
-import React from "react";
-import {
-  GithubLoginButton,
-  GoogleLoginButton,
-} from "react-social-login-buttons";
-
 export default function loading() {
   return (
     <>
@@ -68,14 +62,10 @@ export default function loading() {
           <h1 className="text-center py-4 text-gray-500 animate-pulse">
             --- Atau masuk dengan ---
           </h1>
-          <div className="gap-1 flex flex-col animate-pulse">
-            <GithubLoginButton onClick={() => {}} />
-            <GoogleLoginButton onClick={() => {}} />
-          </div>
 
           <p className="mt-10 text-center text-sm text-gray-500 flex flex-row justify-center align-middle items-center animate-pulse">
             Belum memiliki akun?{" "}
-            <span className="font-semibold leading-6 text-emerald-600 hover:text-emerald-500">
+            <span className="font-semibold leading-6 text-gray-900 ">
               Daftar Sekarang
             </span>
           </p>

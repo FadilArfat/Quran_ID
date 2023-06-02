@@ -5,6 +5,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { useEffect, useState, useRef } from "react";
 import { toast } from "react-hot-toast";
+import Image from "next/image";
 
 export default function Dashboard() {
   const [saveAyat, setSaveAyat] = useState(null);
@@ -107,8 +108,10 @@ export default function Dashboard() {
       <div className="flex flex-col mt-4 lg:flex-row">
         <div className="w-full lg:w-1/4 bg-gray-100 p-4 rounded-md shadow">
           <div className="flex flex-col items-center justify-center w-full">
-            <img
-              className="w-15 h-15 rounded-full"
+            <Image
+              width={80}
+              height={80}
+              style={{ borderRadius: "50%" }}
               src={session?.user.image}
               alt="User Profile"
             />

@@ -1,8 +1,4 @@
 import React from "react";
-import {
-  GithubLoginButton,
-  GoogleLoginButton,
-} from "react-social-login-buttons";
 
 export default function loading() {
   return (
@@ -76,29 +72,19 @@ export default function loading() {
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md bg-emerald-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 animate-pulse"
+                className="flex w-full justify-center rounded-md bg-gray-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2  animate-pulse"
               >
                 Daftar
               </button>
             </div>
           </form>
-          <h1 className="text-center py-4 text-gray-500 animate-pulse">
-            --- Atau daftar dengan ---
-          </h1>
-          <div className="gap-1 flex flex-col animate-pulse">
-            <GithubLoginButton onClick={() => {}} />
-
-            <GoogleLoginButton onClick={() => {}} />
-          </div>
 
           <p className="mt-10 text-center text-sm text-gray-500 flex flex-row justify-center align-middle items-center animate-pulse">
             Sudah punya akun?{" "}
-            <Link href={"/login"}>
-              <h1 className="font-semibold leading-6 text-emerald-600 hover:text-emerald-500 animate-pulse">
-                {" "}
-                Masuk Sekarang
-              </h1>
-            </Link>
+            <h1 className="font-semibold leading-6 text-gray-900 animate-pulse">
+              {" "}
+              Masuk Sekarang
+            </h1>
           </p>
         </div>
       </div>

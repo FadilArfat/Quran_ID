@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
+import Image from "next/image";
 
 export default function Navbar() {
   const { status, data } = useSession();
@@ -41,8 +42,10 @@ export default function Navbar() {
                     className="max-w-xs bg-gray-800 text-gray-400 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
                     onClick={handleDropdownToggle}
                   >
-                    <img
-                      className="h-8 w-8 rounded-full"
+                    <Image
+                      width={30}
+                      height={30}
+                      style={{ borderRadius: "50%" }}
                       src={
                         data
                           ? data?.user?.image

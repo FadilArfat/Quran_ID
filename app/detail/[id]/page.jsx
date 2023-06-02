@@ -8,18 +8,6 @@ export default function Detail({ params }) {
   const [isLoading, setIsLoading] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  const ambil = async () => {
-    setIsLoading(true);
-    const hihi = await fetch(`/api/quran/detail/${params.id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        const haha = data.hasil.data;
-        return haha;
-      });
-    setDetilQuran(hihi);
-    setIsLoading(false);
-  };
-
   const handleButtonClick = (audioFile) => {
     const audio = new Audio(audioFile);
     audio.play();
@@ -31,6 +19,17 @@ export default function Detail({ params }) {
   };
 
   useEffect(() => {
+    const ambil = async () => {
+      setIsLoading(true);
+      const hihi = await fetch(`/api/quran/detail/${params.id}`)
+        .then((res) => res.json())
+        .then((data) => {
+          const haha = data.hasil.data;
+          return haha;
+        });
+      setDetilQuran(hihi);
+      setIsLoading(false);
+    };
     ambil();
   }, []);
 
