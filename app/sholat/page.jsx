@@ -75,10 +75,12 @@ export default function Sholat() {
 
   useEffect(() => {
     ambilKota();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     ambil();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [kota]);
 
   return (

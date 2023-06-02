@@ -1,6 +1,6 @@
 import prisma from "../../../libs/prismadb";
 import { NextResponse } from "next/server";
-import { getServerSession } from "next-auth/next";
+import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/route";
 
 export async function saveHandler(req, res) {
@@ -52,12 +52,12 @@ export async function saveHandler(req, res) {
 
     savedSurat.push(surat);
 
-    const updatedUser = await prisma.user.update({
+    await prisma.user.update({
       where: { email: session.user.email },
       data: { surat: savedSurat },
     });
 
-    return new NextResponse.json(JSON.stringify(updatedUser), { status: 200 });
+    return new NextResponse("Successfully update surat", { status: 200 });
   } catch (error) {
     return new NextResponse("Failed to save surat", { status: 500 });
   }

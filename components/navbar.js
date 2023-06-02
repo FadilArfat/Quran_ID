@@ -21,9 +21,13 @@ export default function Navbar() {
       >
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
           <Link href={"/"} className="flex items-center">
-            <img
-              src="https://firebasestorage.googleapis.com/v0/b/portfolio-web-6bc3e.appspot.com/o/Quran%2B.png?alt=media&token=8656ecba-8124-41f4-a63b-7741100fc7c1"
-              className="object-cover w-12 mr-1"
+            <Image
+              src={
+                "https://firebasestorage.googleapis.com/v0/b/portfolio-web-6bc3e.appspot.com/o/Quran%2B.png?alt=media&token=8656ecba-8124-41f4-a63b-7741100fc7c1"
+              }
+              width={20}
+              height={20}
+              style={{ marginRight: "0.25rem", objectFit: "cover" }}
               alt="Logo"
             />
             <span

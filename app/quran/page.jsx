@@ -37,31 +37,31 @@ export default function Quran() {
     }
   };
 
-  const checkSuratSaved = (nomor) => {
-    return savedSuratNumbers.includes(nomor);
+  const checkSuratSaved = (nomora) => {
+    return savedSuratNumbers.includes(nomora);
   };
 
   const saveSurat = async (
-    nomor,
-    namaLatin,
-    nama,
-    tempatTurun,
-    arti,
-    audioFull
+    nomora,
+    namaLatina,
+    namaa,
+    tempatTuruna,
+    artia,
+    audioFulla
   ) => {
     try {
       setLoading(true);
       const response = await axios.post("/api/save", {
-        nomor,
-        namaLatin,
-        nama,
-        tempatTurun,
-        arti,
-        audioFull,
+        nomor: nomora,
+        namaLatin: namaLatina,
+        nama: namaa,
+        tempatTurun: tempatTuruna,
+        arti: artia,
+        audioFull: audioFulla,
       });
 
       if (response.status === 200) {
-        const updatedSavedSuratNumbers = [...savedSuratNumbers, nomor];
+        const updatedSavedSuratNumbers = [...savedSuratNumbers, nomora];
         setSavedSuratNumbers(updatedSavedSuratNumbers);
 
         toast.success("Berhasil menyimpan surat");

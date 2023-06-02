@@ -31,6 +31,7 @@ export default function Detail({ params }) {
       setIsLoading(false);
     };
     ambil();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   console.log(detilQuran);
