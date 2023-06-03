@@ -1,21 +1,48 @@
 "use client";
 import CardDetailSkeleton from "../../../components/CardSkeleton";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 export default function Detail({ params }) {
   const [detilQuran, setDetilQuran] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentAudio, setCurrentAudio] = useState(null);
+  const audioRefs = useRef({});
 
-  const handleButtonClick = (audioFile) => {
-    const audio = new Audio(audioFile);
-    audio.play();
-    setIsPlaying(true);
+  const handleButtonClick = (audioFile, nomorAyat) => {
+    const audioRef = audioRefs.current[nomorAyat];
+    const currentAudioRef = audioRefs.current[currentAudio];
 
-    audio.addEventListener("ended", () => {
-      setIsPlaying(false);
-    });
+    if (audioRef) {
+      if (!audioRef.paused) {
+        audioRef.pause();
+        setCurrentAudio(null); // Update the current audio file to null
+        // Update the playing state
+      } else {
+        audioRef.play();
+        setCurrentAudio(nomorAyat); // Store the current audio's nomorAyat
+        // Update the playing state
+      }
+    } else if (audioFile) {
+      if (currentAudioRef) {
+        currentAudioRef.pause();
+      }
+
+      const newAudioRef = new Audio(audioFile);
+      setCurrentAudio(nomorAyat); // Store the current audio's nomorAyat
+      newAudioRef.play();
+
+      newAudioRef.addEventListener("ended", () => {
+        // Pause and remove the reference when audio ends
+        newAudioRef.pause();
+        delete audioRefs.current[nomorAyat];
+        setCurrentAudio(null); // Update the current audio file to null
+        // Update the playing state
+      });
+
+      audioRefs.current[nomorAyat] = newAudioRef; // Store the audio reference for the specific card
+      // Update the playing state
+    }
   };
 
   useEffect(() => {
@@ -56,9 +83,11 @@ export default function Detail({ params }) {
                 <p className="text-gray-500">{d.teksIndonesia}</p>
                 <button
                   className="mt-4 p-0 ml-0"
-                  onClick={() => handleButtonClick(d.audio["01"])}
+                  onClick={() => handleButtonClick(d.audio["01"], d.nomorAyat)}
                 >
-                  {isPlaying ? (
+                  {currentAudio === d.nomorAyat &&
+                  audioRefs.current[d.nomorAyat] &&
+                  !audioRefs.current[d.nomorAyat].paused ? (
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
