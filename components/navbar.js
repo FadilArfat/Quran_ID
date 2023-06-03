@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const { status, data } = useSession();
@@ -11,7 +12,8 @@ export default function Navbar() {
   const handleDropdownToggle = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
-  console.log(data);
+  const pathname = usePathname();
+  console.log(pathname.pathname);
 
   return (
     <div>
@@ -23,11 +25,11 @@ export default function Navbar() {
           <Link href={"/"} className="flex items-center">
             <Image
               src={
-                "https://firebasestorage.googleapis.com/v0/b/portfolio-web-6bc3e.appspot.com/o/Quran%2B.png?alt=media&token=8656ecba-8124-41f4-a63b-7741100fc7c1"
+                "https://firebasestorage.googleapis.com/v0/b/dts-final-project-d650a.appspot.com/o/White%20and%20Green%20Luxury%20Modern%20Islamic%20Qur'an%20Logo%201.png?alt=media&token=eb7739f6-80dd-4c2f-8021-b8c4a6e63bc9&_gl=1*1j28pdv*_ga*OTcwMTM2NTMxLjE2ODM1MjE5NzA.*_ga_CW55HF8NVT*MTY4NTc1OTE0OC42LjEuMTY4NTc1OTE5Mi4wLjAuMA.."
               }
-              width={20}
-              height={20}
-              style={{ marginRight: "0.25rem", objectFit: "cover" }}
+              width={40}
+              height={10}
+              style={{ marginRight: "0.25rem" }}
               alt="Logo"
             />
             <span
@@ -46,17 +48,25 @@ export default function Navbar() {
                     className="max-w-xs bg-gray-800 text-gray-400 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
                     onClick={handleDropdownToggle}
                   >
-                    <Image
-                      width={30}
-                      height={30}
-                      style={{ borderRadius: "50%" }}
-                      src={
-                        data
-                          ? data?.user?.image
-                          : "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"
-                      }
-                      alt="User"
-                    />
+                    {data?.user?.image ? (
+                      <Image
+                        width={30}
+                        height={30}
+                        style={{ borderRadius: "50%" }}
+                        src={data?.user?.image}
+                        alt="User"
+                      />
+                    ) : (
+                      <Image
+                        width={35}
+                        height={35}
+                        style={{ borderRadius: "50%" }}
+                        src={
+                          "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"
+                        }
+                        alt="User"
+                      />
+                    )}
                   </button>
                 </div>
                 {isDropdownOpen && (
@@ -124,7 +134,11 @@ export default function Navbar() {
               <li>
                 <Link
                   href={"/"}
-                  className="block py-2 pl-3 pr-4 rounded md:bg-transparent md:p-0"
+                  className={
+                    pathname == "/"
+                      ? "block py-2 pl-3 pr-4 rounded md:bg-transparent md:p-0 text-emerald-900"
+                      : "block py-2 pl-3 pr-4 rounded md:bg-transparent md:p-0"
+                  }
                   aria-current="page"
                 >
                   Home
@@ -134,7 +148,11 @@ export default function Navbar() {
               <li>
                 <Link
                   href={"/quran"}
-                  className="block py-2 pl-3 pr-4 rounded md:bg-transparent md:p-0"
+                  className={
+                    pathname == "/quran"
+                      ? "block py-2 pl-3 pr-4 rounded md:bg-transparent md:p-0 text-emerald-900"
+                      : "block py-2 pl-3 pr-4 rounded md:bg-transparent md:p-0"
+                  }
                   aria-current="page"
                 >
                   Quran
@@ -144,7 +162,11 @@ export default function Navbar() {
               <li>
                 <Link
                   href={"/sholat"}
-                  className="block py-2 pl-3 pr-4 rounded md:hover:bg-transparent md:p-0"
+                  className={
+                    pathname == "/sholat"
+                      ? "block py-2 pl-3 pr-4 rounded md:bg-transparent md:p-0 text-emerald-900"
+                      : "block py-2 pl-3 pr-4 rounded md:bg-transparent md:p-0"
+                  }
                 >
                   Jadwal Shalat
                 </Link>

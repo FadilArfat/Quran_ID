@@ -4,22 +4,25 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { signIn, useSession } from "next-auth/react";
-import { redirect } from "next/navigation";
 import {
   GithubLoginButton,
   GoogleLoginButton,
 } from "react-social-login-buttons";
 import Link from "next/link";
+import { redirect } from "next/dist/server/api-utils";
+import { useRouter } from "next/navigation";
 
 export default function Register() {
   const [data, setData] = useState({ name: "", email: "", password: "" });
   const session = useSession();
+  const router = useRouter();
 
   const registerUser = async (e) => {
     e.preventDefault();
-    axios
+    await axios
       .post("/api/register", data)
       .then(() => toast.success("User has been registered!"))
+      .then(() => router.push("/login"))
       .catch((e) => toast.error("Something went wrong!"));
   };
 
@@ -27,7 +30,9 @@ export default function Register() {
     if (session?.status === "authenticated") {
       redirect("/dashboard");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session]);
+  console.log(session?.status);
 
   return (
     <>
