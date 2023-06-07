@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
         style={{ backgroundColor: "#E9E6D7" }}
       >
         <div
-          className="w-full h-full bg-no-repeat bg-cover relative  flex-grow "
+          className="bg-no-repeat bg-cover relative"
           style={{
             backgroundImage: `url(https://firebasestorage.googleapis.com/v0/b/portfolio-web-6bc3e.appspot.com/o/masjid.svg?alt=media&token=45fbcee4-caf2-4c76-9247-7164683b938b)`,
           }}
