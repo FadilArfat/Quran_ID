@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import classNames from "classNames";
+import classNames from "classnames";
 import { motion } from "framer-motion";
 
 export const PageWrapper = ({ children, className }) => {
