@@ -4,6 +4,7 @@ import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
 
 export default function Navbar() {
   const { status, data } = useSession();
@@ -19,7 +20,7 @@ export default function Navbar() {
     <div>
       <nav
         style={{ backgroundColor: "#E9E6D7" }}
-        className="fixed w-full z-20 top-0 left-0"
+        className="realtive fixed w-full z-10 top-0 left-0"
       >
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
           <Link href={"/"} className="flex items-center">
@@ -136,11 +137,17 @@ export default function Navbar() {
                   href={"/"}
                   className={
                     pathname == "/"
-                      ? "block py-2 pl-3 pr-4 rounded md:bg-transparent md:p-0 text-emerald-900"
-                      : "block py-2 pl-3 pr-4 rounded md:bg-transparent md:p-0"
+                      ? "relative block py-2 pl-3 pr-4 rounded md:bg-transparent md:p-0 text-emerald-900"
+                      : "relative block py-2 pl-3 pr-4 rounded md:bg-transparent md:p-0"
                   }
                   aria-current="page"
                 >
+                  {pathname == "/" && (
+                    <motion.span
+                      layoutId="underline"
+                      className="absolute left-0 top-full block h-[1px] w-full bg-black"
+                    />
+                  )}
                   Home
                 </Link>
               </li>
@@ -150,11 +157,17 @@ export default function Navbar() {
                   href={"/quran"}
                   className={
                     pathname == "/quran"
-                      ? "block py-2 pl-3 pr-4 rounded md:bg-transparent md:p-0 text-emerald-900"
-                      : "block py-2 pl-3 pr-4 rounded md:bg-transparent md:p-0"
+                      ? "relative block py-2 pl-3 pr-4 rounded md:bg-transparent md:p-0 text-emerald-900"
+                      : "relative block py-2 pl-3 pr-4 rounded md:bg-transparent md:p-0"
                   }
                   aria-current="page"
                 >
+                  {pathname == "/quran" && (
+                    <motion.span
+                      layoutId="underline"
+                      className="absolute left-0 top-full block h-[1px] w-full bg-black"
+                    />
+                  )}
                   Quran
                 </Link>
               </li>
@@ -164,10 +177,16 @@ export default function Navbar() {
                   href={"/sholat"}
                   className={
                     pathname == "/sholat"
-                      ? "block py-2 pl-3 pr-4 rounded md:bg-transparent md:p-0 text-emerald-900"
-                      : "block py-2 pl-3 pr-4 rounded md:bg-transparent md:p-0"
+                      ? "relative block py-2 pl-3 pr-4 rounded md:bg-transparent md:p-0 text-emerald-900"
+                      : "relative block py-2 pl-3 pr-4 rounded md:bg-transparent md:p-0"
                   }
                 >
+                  {pathname == "/sholat" && (
+                    <motion.span
+                      layoutId="underline"
+                      className="absolute left-0 top-full block h-[1px] w-full bg-black"
+                    />
+                  )}
                   Jadwal Shalat
                 </Link>
               </li>
